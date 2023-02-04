@@ -56,26 +56,40 @@ class BinaryTree:
         total = 0
         queue = [[self, 0]]
         while len(queue) != 0:
-            el = queue.pop(0)
-            level = max(level, el[1])
+            element = queue.pop(0)
+            level = max(level, element[1])
             total += 1
 
-            if el[0].left is not None:
-                queue.append([el[0].left, el[1] + 1])
-            if el[0].right is not None:
-                queue.append([el[0].right, el[1] + 1])
+            if element[0].left is not None:
+                queue.append([element[0].left, element[1] + 1])
+            if element[0].right is not None:
+                queue.append([element[0].right, element[1] + 1])
 
-        return level, total
-    
+        return {'level': level, 'nodes': total}
+
+
+    def is_in_tree(self, value):
+        """
+        Search for an element in the tree and print it if it exists.
+        """
+        if self.val == value:
+            print(self.val)
+        if self.left:
+            self.left.is_in_tree(value)
+        if self.right:
+            self.right.is_in_tree(value)
+
     # TODO: Remove item from BT
-    # TODO: Search for item in BT
+
 
 
 
 # if __name__ == '__main__':
 #     bt = BinaryTree(10)
-#     for number in [random.randint(0,1000) for i in range(10)]:
+#     for number in [random.randint(0,1000) for i in range(5)]:
 #         bt.add_val(number)
-#     # bt.print_tree()
-#     print(bt.tree_level())
+
+    # bt.is_in_tree(33)
+    # print(bt.tree_level())
+    # bt.print_tree()
     
